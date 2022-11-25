@@ -1,0 +1,331 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <script src="js/jquery-1.8.2.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+</head>
+
+<script>
+
+ $(document).ready(function(){
+    $("#signup").click(function(){
+        var mail=$("#txtEmail").val();
+        var pass=$("#txtPwd").val();
+        var utype=$("#txtuser").val();
+        var url = "/signup?mail=" + mail + "&pass=" + pass + "&utype=" + utype;
+        $.get(url,function(response){
+            alert("signed up sucessfully...");
+        })
+    })
+
+    $("#login").click(function(){
+        var email = $("#txtEmail1").val();
+      var pass = $("#txtPwd1").val();
+      var url = "/chklogin?txtemail=" + email + "&txtpass=" + pass;
+      $.getJSON(url, function (jsonAry) {
+      
+        if (jsonAry.length == 0)
+          alert("invalid email/password/expired");
+
+        else if (jsonAry[0].utype == "donor")
+          window.location.replace("/dash-donor.html");
+        
+        else if (jsonAry[0].utype == "needy")
+          window.location.replace("/dash-needy.html");
+        
+      })
+
+    })
+
+    })
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+</script>
+
+<style>
+    .div {
+
+        background-color: darkgray;
+        width: 100%;
+        height: 350px;
+
+    }
+
+    .spn{
+
+        font-size: 60px;
+        text-shadow:black;
+        font-weight: bold;
+        font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        lighting-color: azure;
+        
+
+
+    }
+
+    .span{
+        font-size: 20px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+   
+</style>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<body>
+
+    <!-- navbar -->
+
+    <nav class="navbar bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <img src="picsp/th.jpeg" alt="" width="30" height="24"
+                    class="d-inline-block align-text-top">
+                tooGatherWE
+            </a>
+
+            <div class="pull-right">
+
+                <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
+                    data-bs-target="#signupModal">signup</button>
+
+
+                <button class="btn btn-secondary" type="button" data-bs-toggle="modal"
+                    data-bs-target="#loginModal">login</button>
+
+
+            </div>
+    </nav>
+
+    <!-- carousel -->
+    <div class="container">
+
+
+        <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="picsp/theme.png" class="d-block w-100" alt="..." height="350px">
+                </div>
+            </div>
+        </div>
+
+        <!-- end -->
+
+        <div class="row mt-2" style="margin-top:4.5rem !important;">
+            <div class="col-md-4">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="picsp/photo (2).webp" class="card-img-top" alt="..." width="100%" height="150px">
+                    <div class="card-body">
+                        <p class="card-text">Make books accessible to every child supporting the mission "book in every child’s hand”</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="picsp/image.webp" class="card-img-top" alt="..." width="100%" height="150px">
+                    <div class="card-body">
+                        <p class="card-text">Make the children pack their bags , go to school and give light to their future.</p>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="col-md-4">
+
+                <div class="card" style="width: 18rem;">
+                    <img src="picsp/image (1).webp" class="card-img-top" alt="..." width="100%" height="150px">
+                    <div class="card-body">
+                        <p class="card-text">Helping the schools by providing some basic machines and making them work more efficiently.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+       
+         <div class="div" style="margin-top:4.5rem !important;">
+
+            <span class="spn">
+
+                <center>
+
+                    WHAT WE DO
+                </center>
+
+
+            </span>
+
+            <span class="span">
+
+                <center>
+                    TooGatherWE is an initiative to help bridge the gap between those who want to help children read and those who need stationary for children. Together we will build a Reading India by making stationaries accessible to thousands of children and spread the joy of reading.We believe that every child has the right to enjoy good books with stories set in surroundings familiar to them and in languages they speak and learn in.We believe that every child has the right to enjoy good material to study set in the surroundings familiar to them.
+                </center>
+            </span>
+         </div>
+    </div>
+<!-- container div -->
+    
+
+    <div class="modal fade" id="signupModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3 row">
+                <label for="form-label" class="col-sm-2 col-form-label">Email</label>
+  
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="txtEmail" name="txtEmail">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="txtPwd" name="txtPwd">
+                </div>
+              </div>
+  
+              <div class="mb-3 row">
+  
+  
+                <div class="form-floating">
+                  <select class="form-select" id="txtuser" name="txtuser" aria-label="Floating label select example">
+                    <option selected>User Type</option>
+                    <option value="donor">donor</option>
+                    <option value="needy">needy</option>
+  
+                  </select>
+                  <label for="floatingSelect">User Type</label>
+                </div>
+  
+              </div>
+  
+  
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-success" id="signup">signup</button>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+  
+      <!-- modal 2 -->
+  
+  
+  
+      <div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  
+  
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <div class="mb-3 row">
+                <label for="form-label" class="col-sm-2 col-form-label">Email</label>
+  
+                <div class="col-sm-10">
+                  <input type="email" class="form-control" id="txtEmail1">
+                </div>
+              </div>
+              <div class="mb-3 row">
+                <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
+                <div class="col-sm-10">
+                  <input type="password" class="form-control" id="txtPwd1">
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-outline-success" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-outline-success" id="login">login</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+
+      <div class="div1" style="margin-top: 4.5rem !important;">
+        <span class="spn">
+
+            <center>
+  
+                contact us:
+            </center>
+          </span>
+      <span class="span">
+
+        <center>
+          <a href="mailto:shreya40040@gmail.com"
+              class="mail">shreya40040@gmail.com<br></a>
+          <a href="mailto:ttaruna_be21@thapar.edu"
+              class="mail">ttaruna_be21@thapar.edu<br></a>
+              <a href="http://linkedin.com/in/shreya-bansal-964a42232"
+              class="mail">http://linkedin.com/in/shreya-bansal-964a42232<br></a>
+          <a href="https://www.linkedin.com/in/taruna-munjal-8b0807255"
+             class="mail">https://www.linkedin.com/in/taruna-munjal-8b0807255<br></a>
+            
+        </center>
+    </span>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+        crossorigin="anonymous"></script>
+</body>
+</html>
